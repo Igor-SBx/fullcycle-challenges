@@ -3,6 +3,6 @@ import CustomerCreatedEvent from "../../event/customerCreated/customerCreated.ev
 
 export default class EnviaConsoleLog1Handler implements EventHandlerInterface<CustomerCreatedEvent> {
     handle(event: CustomerCreatedEvent): void {
-        console.log("Esse é o primeiro console.log do evento: CustomerCreated");
+        console.log("esse é o primeiro console.log do evento: CustomerCreated");
     }
 }

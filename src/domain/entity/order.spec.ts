@@ -7,11 +7,11 @@ describe('Order entity tests', () => {
   });
 
   it('should throw an error if customer id is missing', () => {
-    expect(() => new Order('test-order', '', [])).toThrow("Customer id cannot be empty");
+    expect(() => new Order('test-order', '', [])).toThrow("customer id cannot be empty");
   });
 
   it('should throw an error if no items are provided', () => {
-    expect(() => new Order('test-order', 'test-customer', [])).toThrow("Items cannot be empty");
+    expect(() => new Order('test-order', 'test-customer', [])).toThrow("items cannot be empty");
   });
 
   it('should correctly calculate the total order value', () => {

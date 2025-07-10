@@ -1,8 +1,8 @@
-import Order from '../../domain/entity/order';
-import OrderItem from '../../domain/entity/order_item';
-import OrderItemModel from '../db/sequelize/model/order-item.model';
-import OrderModel from '../db/sequelize/model/order.model';
-import OrderRepositoryInterface from '../../domain/repository/order.repository.interface';
+import OrderRepositoryInterface from "../../../domain/repository/order.repository.interface"
+import OrderModel from "../../db/sequelize/model/order.model"
+import Order from "../../../domain/entity/order"
+import OrderItemModel from "../../db/sequelize/model/order-item.model"
+import OrderItem from "../../../domain/entity/order_item"
 
 export default class OrderRepository implements OrderRepositoryInterface {
   async create(entity: Order): Promise<void> {
@@ -28,14 +28,14 @@ export default class OrderRepository implements OrderRepositoryInterface {
   async find(id: string): Promise<Order> {
     const orderModel = await OrderModel.findOne({ where: { id }, include: ["items"] })
     if (!orderModel) throw new Error("Order not found!")
-    const orderItems = orderModel.items.map((item: OrderItem) => new OrderItem(
+    const orderItems = orderModel.items.map((item: OrderItemModel) => new OrderItem(
       item.id,
       item.productId,
       item.name,
       item.price,
       item.quantity
     ))
-    const order = new Order(orderModel.id, orderModel.customer_id, orderItems)
+    const order = new Order(orderModel.id, orderModel.customerId, orderItems)
     return order;
   }
 
@@ -58,7 +58,7 @@ export default class OrderRepository implements OrderRepositoryInterface {
       }))
       await OrderItemModel.bulkCreate(items, { transaction })
       await order.update({
-        total: entity.total()
+        total: entity.total
       })
       await transaction.commit()
     } catch (error) {
@@ -71,8 +71,8 @@ export default class OrderRepository implements OrderRepositoryInterface {
     const orders = []
 
     for (const orderModel of orderModels) {
-      const items = orderModel.items.map((item) => new OrderItem(item.id, item.product_id, item.name, item.price, item.quantity))
-      const order = new Order(orderModel.id, orderModel.customer_id, items)
+      const items = orderModel.items.map((item) => new OrderItem(item.id, item.productId, item.name, item.price, item.quantity))
+      const order = new Order(orderModel.id, orderModel.customerId, items)
       orders.push(order)
     }
     return orders;

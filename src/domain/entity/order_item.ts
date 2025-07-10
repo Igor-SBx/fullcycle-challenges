@@ -55,7 +55,7 @@ export default class OrderItem {
 
   private validateProductId(): void {
     if (!this._productId) {
-      throw new Error("oroductId cannot be empty");
+      throw new Error("product id cannot be empty");
     }
   }
 

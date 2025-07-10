@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import ProductModel from '../db/sequelize/model/product.model';
-import Product from '../../domain/entity/product';
 import ProductRepository from './product.repository';
+import ProductModel from '../../db/sequelize/model/product.model';
+import Product from '../../../domain/entity/product';
 
 describe('ProductRepository integration tests', () => {
   let sequelize: Sequelize;
@@ -85,7 +85,7 @@ describe('ProductRepository integration tests', () => {
     expect(products[0].price).toBe(20);
 
     expect(products[1].id).toBe('product-test-2');
-    expect(products[1].name).toBe('Pproduct test 2');
+    expect(products[1].name).toBe('product test 2');
     expect(products[1].price).toBe(30);
   });
 });

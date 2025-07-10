@@ -57,22 +57,22 @@ describe('OrderRepository integration tests', () => {
 
     expect(dbOrder.toJSON()).toStrictEqual({
       id: 'order-test-1',
-      customer_id: customer.id,
+      customerId: customer.id,
       total: 120,
       items: [
         {
           id: item.id,
-          product_id: product.id,
+          productId: product.id,
           name: product.name,
           price: product.price,
           quantity: 2,
-          order_id: 'order-test-1',
+          orderId: 'item-test-1',
         },
       ],
     });
   });
 
-  it('should retrieve order by Id'), async () => {
+  it('should retrieve order by Id', async () => {
     const customerRepository = new CustomerRepository();
     const customer = new Customer('customer-test-1', 'John Doe');
     customer.address = new Address('Main St', 10, '11111', 'City A', 'ST');
@@ -128,7 +128,7 @@ describe('OrderRepository integration tests', () => {
 
     const updatedOrder = await orderRepository.find(order.id);
     expect(updatedOrder.items.length).toBe(2);
-    expect(updatedOrder.total()).toBe(650);
+    expect(updatedOrder.total).toBe(650);
   });
 
   it('should list all orders', async () => {

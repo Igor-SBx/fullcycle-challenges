@@ -2,7 +2,7 @@ import CustomerCreatedEvent from "../../event/customerCreated/customerCreated.ev
 import EnviaConsoleLog2Handler from "./secondCustomerCreation.handler";
 
 describe('secondCustomerCreation', () => {
-  it('should output "Esse é o segundo console.log do evento: CustomerCreated" through console ', () => {
+  it('should output "ssse é o segundo console.log do evento: CustomerCreated" through console ', () => {
     const spy = jest.spyOn(console, 'log');
 
     const event = new CustomerCreatedEvent({
@@ -13,9 +13,9 @@ describe('secondCustomerCreation', () => {
       active: false,
     });
 
-    const handler = new LogCustomerCreationHandler1();
+    const handler = new EnviaConsoleLog2Handler();
     handler.handle(event);
 
-    expect(spy).toHaveBeenCalledWith('Esse é o primeiro console.log do evento: CustomerCreated');
+    expect(spy).toHaveBeenCalledWith('esse é o segundo console.log do evento: CustomerCreated');
   });
 })

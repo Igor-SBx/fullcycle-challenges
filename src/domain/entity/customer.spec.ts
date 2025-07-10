@@ -7,7 +7,7 @@ describe('Customer entity tests', () => {
   });
 
   it('should throw an error if the name is empty', () => {
-    expect(() => new Customer('1', '')).toThrow("Name cannot be empty");
+    expect(() => new Customer('1', '')).toThrow("name cannot be empty");
   });
 
   it('should allow updating the customer name', () => {
@@ -32,7 +32,7 @@ describe('Customer entity tests', () => {
 
   it('should throw an error when activating a customer without an address', () => {
     const customer = new Customer('1', 'Test test');
-    expect(() => customer.activate()).toThrow("Address is mandatory to activate customer");
+    expect(() => customer.activate()).toThrow("address is mandatory to activate customer");
   });
 
   it('should correctly accumulate reward points', () => {

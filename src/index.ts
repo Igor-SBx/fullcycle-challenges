@@ -4,17 +4,17 @@ import Address from "./domain/entity/address";
 import EventDispatcher from "./domain/event/@shared/event-dispatcher";
 
 import CustomerCreatedEvent from "./domain/event/customer/event/customerCreated/customerCreated.event";
-import CustomerAddressChangedEvent from "./domain/event/customer/customer-address-changed.event";
+import EnviaConsoleLog1Handler from "./domain/event/customer/handlers/customerCreated/firstCustomerCreation.handler";
+import EnviaConsoleLog2Handler from "./domain/event/customer/handlers/customerCreated/secondCustomerCreation.handler";
+import EnviaConsoleLogHandler from "./domain/event/customer/handlers/addressChanged/enviaConsoleLog.handler";
+import AddressChangedEvent from "./domain/event/customer/event/addressChanged/customer-address-changed.event";
 
-import LogCustomerCreationHandler1 from "./domain/event/customer/handlers/firstCustomerCreation.handler";
-import LogCustomerCreationHandler2 from "./domain/event/customer/handlers/secondCustomerCreation.handler";
-import LogAddressChangeHandler from "./domain/event/customer/handlers/enviaConsoleLog.handler";
 
 const eventDispatcher = EventDispatcher.create();
 
-eventDispatcher.register("CustomerCreatedEvent", new LogCustomerCreationHandler1());
-eventDispatcher.register("CustomerCreatedEvent", new LogCustomerCreationHandler2());
-eventDispatcher.register("CustomerAddressChangedEvent", new LogAddressChangeHandler());
+eventDispatcher.register("CustomerCreatedEvent", new EnviaConsoleLog1Handler());
+eventDispatcher.register("CustomerCreatedEvent", new EnviaConsoleLog2Handler());
+eventDispatcher.register("CustomerAddressChangedEvent", new EnviaConsoleLogHandler());
 
 const customer = new Customer('any_id', 'any_name');
 
@@ -30,7 +30,7 @@ eventDispatcher.notify(customerCreatedEvent);
 const newAddress = new Address('any_street', 0, 'any_city', 'any_zip', 'any_state');
 customer.changeAddress(newAddress);
 
-const addressChangedEvent = new CustomerAddressChangedEvent({
+const addressChangedEvent = new AddressChangedEvent({
   id: customer.id,
   name: customer.name,
   address: {

@@ -22,7 +22,7 @@ describe('enviaConsoleLog', () => {
     handler.handle(event);
 
     expect(spy).toHaveBeenCalledWith(
-      `Endereço do cliente: ${eventData.id}, ${eventData.name} alterado para: ${eventData.address.street}, ${eventData.address.number}, ${eventData.address.city}, ${eventData.address.zip}, ${eventData.address.state}`
+     `Endereço do cliente: ${eventData.id}, ${eventData.name} alterado para: ${eventData.address.zip}, rua ${eventData.address.street}, nº${eventData.address.number}, ${eventData.address.city}/${eventData.address.state}`
     );
   });
 })

@@ -48,7 +48,7 @@ export default class Customer {
 
 	activate(): void {
 		if (!this._address) {
-			throw new Error("address is require for customer activation");
+			throw new Error("address is mandatory to activate customer");
 		}
 		this._active = true;
 	}
