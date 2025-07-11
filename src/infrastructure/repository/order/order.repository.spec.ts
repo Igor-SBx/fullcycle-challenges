@@ -53,7 +53,7 @@ describe('OrderRepository integration tests', () => {
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
 
-    const dbOrder = await OrderModel.findOne({ where: { id: 'order-test-1' }, include: ['items'] });
+    const dbOrder = await OrderModel.findOne({ where: { id: 'order-test-1' }, include: ['items']});
 
     expect(dbOrder.toJSON()).toStrictEqual({
       id: 'order-test-1',
