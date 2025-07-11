@@ -27,9 +27,6 @@ export default class OrderItemModel extends Model {
   @Column({ allowNull: false })
   declare orderId: string;
 
-  @BelongsTo(() => OrderModel)
-  declare order: Awaited<OrderModel>;
-
   @Column({ allowNull: false })
   declare quantity: number;
 
